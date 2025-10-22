@@ -36,7 +36,7 @@
     "showErrors": false,
     "disableLinewrap": true,
     "hideCursor": false,
-    "separator": ": ",
+    "separator": " ➜ ",
     "color": {
       "keys": "",
       "title": "",
@@ -149,26 +149,17 @@
       "keyIcon": ""
     },
     {
-      "type": "uptime",
-      "keyIcon": ""
-    },
-    {
       "type": "packages",
       "keyIcon": "󰏖",
       "disabled": [
         "apk"
       ],
       "combined": false
-    },
+    },    
+    "break",
     {
       "type": "shell",
       "keyIcon": ""
-    },
-    {
-      "type": "display",
-      "keyIcon": "󰍹",
-      "compactType": "none",
-      "preciseRefreshRate": false
     },
     {
       "type": "de",
@@ -208,6 +199,7 @@
       "type": "terminalfont",
       "keyIcon": ""
     },
+    "break",
     {
       "type": "cpu",
       "keyIcon": "",
@@ -237,16 +229,6 @@
       }
     },
     {
-      "type": "swap",
-      "percent": {
-        "green": 50,
-        "yellow": 80,
-        "type": 0
-      },
-      "keyIcon": "󰓡",
-      "separate": false
-    },
-    {
       "type": "disk",
       "keyIcon": "",
       "showRegular": true,
@@ -263,7 +245,7 @@
         "green": 50,
         "yellow": 80,
         "type": 0
-      }
+      },
     },
     {
       "type": "localip",
@@ -295,24 +277,5 @@
       "type": "poweradapter",
       "keyIcon": "󰚥"
     },
-    {
-      "type": "locale",
-      "keyIcon": ""
-    },
-    "break",
-    {
-      "type": "colors",
-      "key": " ",
-      "keyIcon": "",
-      "symbol": "block",
-      "paddingLeft": 0,
-      "block": {
-        "width": 3,
-        "range": [
-          0,
-          15
-        ]
-      }
-    }
-  ]
+     ]
 }
