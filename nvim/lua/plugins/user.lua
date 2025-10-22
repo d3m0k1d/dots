@@ -6,6 +6,51 @@
 return {
 
   {
+    "xiyaowong/transparent.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("transparent").setup {
+        groups = {
+          "Normal",
+          "NormalNC",
+          "Comment",
+          "Constant",
+          "Special",
+          "Identifier",
+          "Statement",
+          "PreProc",
+          "Type",
+          "Underlined",
+          "Todo",
+          "String",
+          "Function",
+          "Conditional",
+          "Repeat",
+          "Operator",
+          "Structure",
+          "LineNr",
+          "NonText",
+          "SignColumn",
+          "CursorColumn",
+          "CursorLine",
+          "CursorLineNr",
+          "StatusLine",
+          "StatusLineNC",
+          "EndOfBuffer",
+        },
+        extra_groups = {
+          "NormalFloat",
+          "NeoTreeNormal",
+          "NeoTreeNormalNC",
+        },
+        exclude_groups = {},
+      }
+      -- Для bufferline и аналогичных плагинов
+      require("transparent").clear_prefix "BufferLine"
+      require("transparent").clear_prefix "NeoTree"
+    end,
+  },
+  {
     "Exafunction/windsurf.vim",
     event = "BufEnter",
     config = function()
