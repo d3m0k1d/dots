@@ -44,6 +44,18 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = {
+              ["https://goreleaser.com/static/schema.json"] = {
+                ".goreleaser.yaml",
+                ".goreleaser.yml"
+              },
+            },
+          },
+        },
+      }
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
     },
     -- customize how language servers are attached
