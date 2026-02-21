@@ -18,7 +18,7 @@ My personal simple setup for [Hyprland](https://github.com/hyprwm/Hyprland) on m
 - [Lazygit](https://github.com/jesseduffield/lazygit)
 - [Eza](https://github.com/eza-community/eza)
 ## Installation
-I write simple makefile, but i dont test on new system. If you encounter any issues while using it, please create an issue on GitHub or contact me via email.
+I write simple makefile, but i dont test on new system. If you encounter any issues while using it, please create an issue on GitHub or contact me via email [contact@d3m0k1d.ru](mailto:contact@d3m0k1d.ru).
 ```shell
 git clone https://github.com/d3m0k1d/dots.git
 cd dots
