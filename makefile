@@ -14,7 +14,7 @@ backup:
 
 deps:
 	@echo "Installing dependencies..."
-	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zsh curl git
+	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zsh curl git eza
 	@echo "✓ Dependencies installed"
 
 install-zsh:

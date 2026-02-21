@@ -12,10 +12,26 @@ return {
   opts = {
     -- change colorscheme
     colorscheme = "astrodark",
+    
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
-        -- Normal = { bg = "#000000" },Normal = { bg = "NONE", ctermbg = "NONE" }, 
+        StatusLine = { bg = "NONE" },
+        StatusLineNC = { bg = "NONE" },
+        TabLine = { bg = "NONE" },
+        TabLineFill = { bg = "NONE" },
+        TabLineSel = { bg = "NONE" },
+        BufferLine = { bg = "NONE" },
+        BufferLineFill = { bg = "NONE" },
+        HeirlineActive = { bg = "NONE" },
+        HeirlineInactive = { bg = "NONE" },
+        NeoTreeGitAdded = { bg = "NONE" },
+        NeoTreeGitModified = { bg = "NONE" },
+        NeoTreeGitDeleted = { bg = "NONE" },
+        BufferLineGitAdded = { bg = "NONE" },
+        BufferLineGitModified = { bg = "NONE" },
+        BufferLineGitDeleted = { bg = "NONE" },
+        HeirlineGit = { bg = "NONE" },
       },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
