@@ -1,8 +1,6 @@
 git:
   pagers:
     - colorArg: always
-      pager: delta --syntax-theme base16-256
-  showIcons: true
 gui:
   theme:
     activeBorderColor:
