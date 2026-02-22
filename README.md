@@ -3,6 +3,7 @@
 My personal simple setup for [Hyprland](https://github.com/hyprwm/Hyprland) on my Arch Linux
 
 ## Overview
+![Demo](./docs/demo.gif)
 ![Waybar](./docs/sc1.png)
 ![Terminal + Fastfetch](./docs/sc2.png)
 ![NeoVim](./docs/sc3.png)
