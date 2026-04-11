@@ -113,3 +113,21 @@ alias upd='sudo pacman -Syu'
 alias ls='eza'
 alias ff='fastfetch'
 alias re='reboot'
+alias ze='zellij'
+
+
+# Created by `pipx` on 2026-03-28 14:03:09
+export PATH="$PATH:/home/d3m0k1d/.local/bin"
+
+# The next line updates PATH for CLI.
+if [ -f '/home/d3m0k1d/yandex-cloud/path.bash.inc' ]; then source '/home/d3m0k1d/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/d3m0k1d/yandex-cloud/completion.zsh.inc' ]; then source '/home/d3m0k1d/yandex-cloud/completion.zsh.inc'; fi
+
+
+
+
+
+
+
