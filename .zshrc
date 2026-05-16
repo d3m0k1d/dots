@@ -5,6 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -131,3 +132,11 @@ if [ -f '/home/d3m0k1d/yandex-cloud/completion.zsh.inc' ]; then source '/home/d3
 
 
 
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/d3m0k1d/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# OpenClaw Completion
+source "/home/d3m0k1d/.openclaw/completions/openclaw.zsh"
