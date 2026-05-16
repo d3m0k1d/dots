@@ -1,7 +1,7 @@
 # dots
 
 My personal simple setup for [Hyprland](https://github.com/hyprwm/Hyprland) on my Arch Linux
-
+If you use Hyprland >= 0.55 you can delete .conf global config file because hyprland use on new version lua config file
 ## Overview
 ![Demo](./docs/demo.gif)
 ![Terminal + Fastfetch](./docs/sc2.png)
