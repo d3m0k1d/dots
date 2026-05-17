@@ -97,7 +97,7 @@ hl.config({
 	misc = { force_default_wallpaper = 0, disable_hyprland_logo = false },
 })
 
--- Input --
+-- Input RU, EN language --
 hl.config({
 	input = {
 		kb_layout = "us, ru",
@@ -144,7 +144,7 @@ hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Multimedia keys --
+-- Multimedia keys(standart binds) --
 hl.bind(
 	"XF86AudioRaiseVolume",
 	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
