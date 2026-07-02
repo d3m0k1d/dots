@@ -137,10 +137,18 @@ return {
   {
     "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
-      local luasnip = require "luasnip"
-      luasnip.filetype_extend("javascript", { "javascriptreact" })
+      require "astronvim.plugins.configs.luasnip"(plugin, opts)
+      require("luasnip.loaders.from_lua").load { paths = vim.fn.stdpath "config" .. "/lua/snippets" }
+
+      -- Attach ansible snippets to yaml and yaml.ansible filetypes
+      local ls = require "luasnip"
+      local ok, ansible_snippets = pcall(require, "snippets.ansible")
+      local compose_snippets = require "snippets.compose"
+      if ok then
+        ls.add_snippets("yaml", ansible_snippets)
+        ls.add_snippets("yaml.ansible", ansible_snippets)
+        ls.add_snippets("yaml", compose_snippets)
+      end
     end,
   },
 
