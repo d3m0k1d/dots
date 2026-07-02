@@ -116,16 +116,6 @@ volumes:
 ---
 
 ### `cmp-start`
-```lua
-s("cmp-start", {
-  t { "services:", "", "", "", "", "networks:", "  " },
-  i(1, "app-net"),
-  t { ":", "    driver: bridge", "", "volumes:", "  " },
-  i(2, "app-data"),
-  t { ":" },
-})
-```
-
 ```yaml
 services:
 
