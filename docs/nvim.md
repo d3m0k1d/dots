@@ -298,6 +298,62 @@ CMD ["python", "main.py"]
 
 ---
 
+## 📁 github-actions.lua
+
+### `gha-start`
+```yaml
+name: ci
+on:
+  push:
+  pull_request:
+    branches: master
+
+jobs:
+  build
+      runs-on: ubuntu-latest
+```
+
+---
+
+## 📁 nginx.lua
+
+### `nginx-start`
+```nginx
+server {
+    listen 80;
+    server_name localhost.local;
+    root /var/www/html;
+    location / {
+        try_files $uri $uri/index.html;
+    }
+    server_tokens off;
+}
+```
+
+---
+
+### `nginx-tls`
+```nginx
+listen 443 ssl;
+ssl_certificate /etc/ssl/cert.pem;
+ssl_certificate_key /etc/ssl/key.pem;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+ssl_ciphers HIGH:!aNULL:!MD5:!3DES;
+```
+
+---
+
+### `nginx-cache`
+```nginx
+location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
+    expires 30d;
+    add_header Cache-Control public, immutable;
+    access_log off;
+}
+```
+
+---
+
 ## 📁 go.lua
 
 ### `fn`
