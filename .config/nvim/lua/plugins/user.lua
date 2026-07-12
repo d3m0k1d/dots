@@ -143,12 +143,14 @@ return {
       -- Attach ansible snippets to yaml and yaml.ansible filetypes
       local ls = require "luasnip"
       local ok, ansible_snippets = pcall(require, "snippets.ansible")
+      local prom_snippets = require "snippets.prometheus"
       local compose_snippets = require "snippets.compose"
       local nginx_snippets = require "snippets.nginx"
       local github_actions_snippets = require "snippets.github-actions"
       if ok then
         ls.add_snippets("yaml", ansible_snippets)
         ls.add_snippets("yaml.ansible", ansible_snippets)
+        ls.add_snippets("yaml", prom_snippets)
         ls.add_snippets("yaml", compose_snippets)
         ls.add_snippets("yaml", github_actions_snippets)
         ls.add_snippets("conf", nginx_snippets)
