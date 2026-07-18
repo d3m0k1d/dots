@@ -30,7 +30,6 @@
 ---
 
 ### `ans-inventory`
-**Вывод:**
 ```yaml
 ---
 all:
