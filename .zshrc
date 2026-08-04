@@ -133,7 +133,7 @@ if [ -f '/home/d3m0k1d/yandex-cloud/completion.zsh.inc' ]; then source '/home/d3
 
 
 export PATH="$HOME/.npm-global/bin:$PATH"
-
+export EDITOR="nvim"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/d3m0k1d/.lmstudio/bin"
 # End of LM Studio CLI section
