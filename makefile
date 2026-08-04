@@ -2,7 +2,7 @@ HOME_DIR := $(HOME)
 CONFIG_DIR := $(HOME)/.config
 DOTFILES := $(shell pwd)
 
-.PHONY: all backup install deps dotfiles help
+.PHONY: all backup install deps dotfiles link unlink clean help
 
 all: help
 
@@ -14,7 +14,7 @@ backup:
 
 deps:
 	@echo "Installing dependencies..."
-	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zsh curl git eza
+	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zsh curl git eza stow
 	@echo "✓ Dependencies installed"
 
 install-zsh:
@@ -103,6 +103,22 @@ clean:
 	rm -rf $(CONFIG_DIR)/fastfetch
 	@echo "✓ Dotfiles removed"
 
+link:
+	@echo "Linking configs with stow..."
+	@mkdir -p $(CONFIG_DIR)
+	@for d in $$(ls -A $(DOTFILES)/.config); do \
+		if [ -e "$(CONFIG_DIR)/$$d" ] && [ ! -L "$(CONFIG_DIR)/$$d" ]; then \
+			mv "$(CONFIG_DIR)/$$d" "$(CONFIG_DIR)/$$d.bak" && echo "Backed up $$d -> $$d.bak"; \
+		fi; \
+	done
+	stow --target=$(CONFIG_DIR) --dir=$(DOTFILES) .config
+	@echo "✓ Configs linked: $(CONFIG_DIR) -> $(DOTFILES)/.config"
+
+unlink:
+	@echo "Unlinking configs..."
+	stow --target=$(CONFIG_DIR) --dir=$(DOTFILES) -D .config
+	@echo "✓ Configs unlinked"
+
 help:
 	@echo "Dotfiles Makefile by d3m0k1d"
 	@echo ""
@@ -113,4 +129,6 @@ help:
 	@echo "  make dotfiles    - Install dotfiles only"
 	@echo "  make install-zsh - Install oh-my-zsh only"
 	@echo "  make clean       - Remove installed dotfiles"
+	@echo "  make link        - Link all configs into ~/.config with stow (backs up existing)"
+	@echo "  make unlink      - Remove stow symlinks"
 	@echo "  make help        - Show this help"
