@@ -141,6 +141,4 @@ export PATH="$PATH:/home/d3m0k1d/.lmstudio/bin"
 # OpenClaw Completion
 source "/home/d3m0k1d/.openclaw/completions/openclaw.zsh"
 
-export KUBECONFIG="$HOME/.kube/config
-
-
+export KUBECONFIG="$HOME/.kube/config"
