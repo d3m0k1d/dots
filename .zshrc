@@ -115,7 +115,7 @@ alias ls='eza'
 alias ff='fastfetch'
 alias re='reboot'
 alias ze='zellij'
-
+alias yz='yazi'
 
 # Created by `pipx` on 2026-03-28 14:03:09
 export PATH="$PATH:/home/d3m0k1d/.local/bin"
@@ -140,4 +140,7 @@ export PATH="$PATH:/home/d3m0k1d/.lmstudio/bin"
 
 # OpenClaw Completion
 source "/home/d3m0k1d/.openclaw/completions/openclaw.zsh"
+
+export KUBECONFIG="$HOME/.kube/config
+
 

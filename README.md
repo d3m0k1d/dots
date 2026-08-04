@@ -35,6 +35,7 @@ sudo make install
 | `re`  | `reboot` |
 | `g`   | `git push origin master` |
 | `n`   | `nvim` |
+| `yz`   | `yazi` |
 
 ## License
 This project is licensed under the MIT License.
