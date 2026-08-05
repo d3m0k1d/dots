@@ -16,7 +16,7 @@ overall = {}
 # : Manager {{{
 
 [mgr]
-cwd = { fg = "cyan" }
+cwd = { fg = "red" }
 
 # Find
 find_keyword  = { fg = "yellow", bold = true, italic = true, underline = true }
@@ -50,8 +50,8 @@ syntect_theme = ""
 # : Tabs {{{
 
 [tabs]
-active   = { bg = "blue", bold = true }
-inactive = { fg = "blue", bg = "gray" }
+active   = { bg = "red", bold = true }
+inactive = { fg = "red", bg = "gray" }
 
 # Separator
 sep_inner = { open = "", close = "" }
@@ -63,8 +63,8 @@ sep_outer = { open = "", close = "" }
 # : Mode {{{
 
 [mode]
-normal_main = { bg = "blue", bold = true }
-normal_alt  = { fg = "blue", bg = "gray" }
+normal_main = { bg = "red", bold = true }
+normal_alt  = { fg = "red", bg = "gray" }
 
 # Select mode
 select_main = { bg = "red", bold = true }
@@ -113,7 +113,7 @@ progress_error  = { fg = "yellow", bg = "red" }
 # : Which {{{
 
 [which]
-border          = { fg = "blue" }
+border          = { fg = "red" }
 cols            = 3
 mask            = {}
 cand            = { fg = "lightcyan" }
@@ -128,8 +128,8 @@ separator_style = { fg = "darkgray" }
 # : Confirmation {{{
 
 [confirm]
-border     = { fg = "blue" }
-title      = { fg = "blue" }
+border     = { fg = "red" }
+title      = { fg = "red" }
 body       = {}
 list       = {}
 btn_yes    = { reversed = true }
@@ -142,11 +142,11 @@ btn_labels = [ "  [Y]es  ", "  (N)o  " ]
 # : Spotter {{{
 
 [spot]
-border = { fg = "blue" }
-title  = { fg = "blue" }
+border = { fg = "red" }
+title  = { fg = "red" }
 
 # Table
-tbl_col  = { fg = "blue" }
+tbl_col  = { fg = "red" }
 tbl_cell = { fg = "yellow", reversed = true }
 
 # : }}}
@@ -170,7 +170,7 @@ icon_error = ""
 # : Picker {{{
 
 [pick]
-border   = { fg = "blue" }
+border   = { fg = "red" }
 active   = { fg = "magenta", bold = true }
 inactive = {}
 
@@ -180,7 +180,7 @@ inactive = {}
 # : Input {{{
 
 [input]
-border   = { fg = "blue" }
+border   = { fg = "red" }
 title    = {}
 value    = {}
 selected = { reversed = true }
@@ -191,7 +191,7 @@ selected = { reversed = true }
 # : Completion {{{
 
 [cmp]
-border   = { fg = "blue" }
+border   = { fg = "red" }
 active   = { reversed = true }
 inactive = {}
 
@@ -206,7 +206,7 @@ icon_command = ""
 # : Task manager {{{
 
 [tasks]
-border  = { fg = "blue" }
+border  = { fg = "red" }
 title   = {}
 hovered = { fg = "magenta", bold = true }
 
@@ -216,7 +216,7 @@ hovered = { fg = "magenta", bold = true }
 # : Help menu {{{
 
 [help]
-border  = { fg = "blue" }
+border  = { fg = "red" }
 chord   = { fg = "cyan" }
 action  = {}
 hovered = { reversed = true, bold = true }
@@ -245,7 +245,7 @@ rules = [
 	{ url = "*", is = "dummy", bg = "red" },
 	{ url = "*/", is = "dummy", bg = "red" },
 	# Fallback
-	{ url = "*/", fg = "blue" }
+	{ url = "*/", fg = "red" }
 ]
 
 # : }}}
