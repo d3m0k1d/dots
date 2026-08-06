@@ -126,7 +126,7 @@ if [ -f '/home/d3m0k1d/yandex-cloud/path.bash.inc' ]; then source '/home/d3m0k1d
 # The next line enables shell command completion for yc.
 if [ -f '/home/d3m0k1d/yandex-cloud/completion.zsh.inc' ]; then source '/home/d3m0k1d/yandex-cloud/completion.zsh.inc'; fi
 
-
+eval "$(zoxide init zsh)"
 
 
 
