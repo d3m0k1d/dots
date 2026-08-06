@@ -2,7 +2,7 @@
 [mgr]
 
 keymap = [
-	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
+	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" }, 
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
 	{ on = "Q",     run = "quit --no-cwd-file", desc = "Quit without outputting cwd-file" },
