@@ -116,7 +116,7 @@ alias ff='fastfetch'
 alias re='reboot'
 alias ze='zellij'
 alias yz='yazi'
-
+alias cd="z"
 # Created by `pipx` on 2026-03-28 14:03:09
 export PATH="$PATH:/home/d3m0k1d/.local/bin"
 
