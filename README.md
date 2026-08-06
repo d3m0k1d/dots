@@ -16,6 +16,9 @@ If you use Hyprland >= 0.55 you can delete .conf global config file because hypr
 - [Fastfetch](https://github.com/fastfetch-cli/fastfetch)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
 - [Eza](https://github.com/eza-community/eza)
+- [Zoxide](https://github.com/ajeetdsouza/zoxide)
+- [Yazi](https://github.com/sxyazi/yazi)
+- [Zellij](https://github.com/zellij-org/zellij)
 ## Installation
 I write simple makefile, but i dont test on new system. If you encounter any issues while using it, please create an issue on GitHub or contact me via email [contact@d3m0k1d.ru](mailto:contact@d3m0k1d.ru).
 ```shell
@@ -36,6 +39,7 @@ sudo make install
 | `g`   | `git push origin master` |
 | `n`   | `nvim` |
 | `yz`   | `yazi` |
-
+| `ze`   | `zellij` |
+| `cd`   | `z(zoxidie)` |
 ## License
 This project is licensed under the MIT License.
