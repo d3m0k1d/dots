@@ -147,12 +147,14 @@ return {
       local compose_snippets = require "snippets.compose"
       local nginx_snippets = require "snippets.nginx"
       local github_actions_snippets = require "snippets.github-actions"
+      local k8s_snippets = require "snippets.k8s"
       if ok then
         ls.add_snippets("yaml", ansible_snippets)
         ls.add_snippets("yaml.ansible", ansible_snippets)
         ls.add_snippets("yaml", prom_snippets)
         ls.add_snippets("yaml", compose_snippets)
         ls.add_snippets("yaml", github_actions_snippets)
+        ls.add_snippets("yaml", k8s_snippets)
         ls.add_snippets("conf", nginx_snippets)
       end
     end,

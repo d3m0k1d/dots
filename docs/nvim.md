@@ -314,6 +314,233 @@ jobs:
 
 ---
 
+## 📁 k8s.lua
+
+Kubernetes snippets. Manifest snippets insert the `# yaml-language-server: $schema=...` modeline pointing at a per-resource yannh schema (v1.36.0), so yamlls provides both validation and `apiVersion`/`kind` suggestions.
+
+### `k8s-m` — schema modeline
+
+```yaml
+# yaml-language-server: $schema=.../<resource>.json
+```
+
+Scans the first 40 buffer lines for `apiVersion`/`kind` and inserts the modeline for the matching schema (`deployment-apps-v1.json`, `service-v1.json`, …). Empty file or no `kind` → `all.json`. Insert at the top of the file (or re-insert after adding a kind).
+
+### `k8s-av` — apiVersion picker
+
+```yaml
+apiVersion: v1
+```
+
+Choice node, cycles with Tab. Available: `v1`, `apps/v1`, `batch/v1`, `networking.k8s.io/v1`, `rbac.authorization.k8s.io/v1`, `autoscaling/v2`, `policy/v1`, `storage.k8s.io/v1`, `apiextensions.k8s.io/v1`.
+
+### `k8s-kind` — kind matching the current apiVersion
+
+```yaml
+kind: Deployment
+```
+
+Reads `apiVersion` from the buffer and offers only compatible kinds:
+
+| apiVersion | kinds |
+|---|---|
+| `v1` | `Pod`, `Service`, `ConfigMap`, `Secret`, `Namespace`, `ServiceAccount`, `PersistentVolumeClaim`, `PersistentVolume`, `Endpoints`, `LimitRange`, `ResourceQuota`, `ReplicationController`, `Node` |
+| `apps/v1` | `Deployment`, `StatefulSet`, `DaemonSet`, `ReplicaSet` |
+| `batch/v1` | `Job`, `CronJob` |
+| `networking.k8s.io/v1` | `Ingress`, `IngressClass`, `NetworkPolicy` |
+| `rbac.authorization.k8s.io/v1` | `Role`, `ClusterRole`, `RoleBinding`, `ClusterRoleBinding` |
+| `autoscaling/v2` | `HorizontalPodAutoscaler` |
+| `policy/v1` | `PodDisruptionBudget` |
+| `storage.k8s.io/v1` | `StorageClass`, `VolumeAttachment`, `CSIDriver` |
+| `apiextensions.k8s.io/v1` | `CustomResourceDefinition` |
+
+Missing or unknown `apiVersion` → all kinds are offered.
+
+### How to use
+
+1. In an empty file: `k8s-av` → pick the version (`apps/v1`), Enter.
+2. On the next line `k8s-kind` → pick the kind (`Deployment`), Enter.
+3. `k8s-m` → insert the schema modeline — yamlls then validates and suggests fields (`replicas`, `containers`, …).
+   Or jump straight to one of the manifest snippets below (modeline already included).
+
+### Manifest snippets (modeline already included)
+
+#### `k8s-deploy`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+```
+
+---
+
+#### `k8s-svc`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: app
+spec:
+  selector:
+    app: app
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+```
+
+---
+
+#### `k8s-cm`
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app
+data:
+  key: value
+```
+
+---
+
+#### `k8s-secret`
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app
+type: Opaque
+data:
+  key: dmFsdWU=
+```
+
+---
+
+#### `k8s-ing`
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app
+                port:
+                  number: 80
+```
+
+---
+
+#### `k8s-ns`
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app
+```
+
+---
+
+#### `k8s-pod`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  containers:
+    - name: app
+      image: nginx:alpine
+```
+
+---
+
+#### `k8s-job`
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: job
+          image: busybox
+```
+
+---
+
+#### `k8s-cronjob`
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: cron
+              image: busybox
+```
+
+---
+
+#### `k8s-sts`
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app
+spec:
+  serviceName: app
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: postgres:16
+```
+
+---
+
 ## 📁 nginx.lua
 
 ### `nginx-start`

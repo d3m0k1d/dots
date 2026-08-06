@@ -50,7 +50,13 @@ return {
             schemas = {
               ["https://goreleaser.com/static/schema.json"] = {
                 ".goreleaser.yaml",
-                ".goreleaser.yml"
+                ".goreleaser.yml",
+              },
+              ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.36.0-standalone-strict/all.json"] = {
+                "k8s/*.yaml",
+                "k8s/**/*.yaml",
+                "**/*.k8s.yaml",
+                "**/*.k8s.yml",
               },
             },
           },
