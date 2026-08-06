@@ -14,7 +14,7 @@ backup:
 
 deps:
 	@echo "Installing dependencies..."
-	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zsh curl git eza stow
+	sudo pacman -S --needed hyprland nvim kitty lazygit swww hyprshot hyprlock waybar wofi fastfetch zellij zsh curl git eza stow
 	@echo "✓ Dependencies installed"
 
 install-zsh:
@@ -69,6 +69,10 @@ dotfiles:
 	mkdir -p $(CONFIG_DIR)/fastfetch
 	cp -r $(DOTFILES)/config/fastfetch/* $(CONFIG_DIR)/fastfetch/
 	
+	# Zellij
+	mkdir -p $(CONFIG_DIR)/zellij
+	cp -r $(DOTFILES)/.config/zellij/* $(CONFIG_DIR)/zellij/
+	
 
 	@if [ -f "$(DOTFILES)/config/zsh/.zshrc" ]; then \
 		cp $(DOTFILES)/config/zsh/.zshrc $(HOME_DIR)/.zshrc; \
@@ -101,6 +105,7 @@ clean:
 	rm -rf $(CONFIG_DIR)/nvim
 	rm -rf $(CONFIG_DIR)/lazygit
 	rm -rf $(CONFIG_DIR)/fastfetch
+	rm -rf $(CONFIG_DIR)/zellij
 	@echo "✓ Dotfiles removed"
 
 link:
