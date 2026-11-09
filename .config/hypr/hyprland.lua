@@ -17,8 +17,9 @@ local browser = "zen-browser"
 
 -- Autostart --
 hl.on("hyprland.start", function()
-	hl.exec_cmd("awww-daemon & awww img /home/d3m0k1d/wlp/956309.jpg & waybar & " .. browser .. " & Telegram")
+	hl.exec_cmd("awww-daemon & awww img /home/d3m0k1d/wlp/956309.jpg & qs -c /home/d3m0k1d/.config/quickshell & " .. browser .. " & Telegram")
 	hl.exec_cmd("/home/d3m0k1d/bin/hypr_monitor_switch.sh")
+	hl.exec_cmd("hypridle")
 end)
 
 -- Env --
@@ -32,7 +33,7 @@ hl.config({
 		gaps_out = 20,
 		border_size = 0,
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
+			active_border = { colors = { "rgba(ffffffff)" }, angle = 45 },
 			inactive_border = "rgba(595959aa)",
 		},
 		resize_on_border = false,
