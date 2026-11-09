@@ -15,8 +15,10 @@ PanelMenu {
     property string message: ""
     property bool showProfiles: false
     property bool showVpn: false
+    property bool showTailscale: false
     onShowProfilesChanged: scrollArea.contentY = 0
     onShowVpnChanged: scrollArea.contentY = 0
+    onShowTailscaleChanged: scrollArea.contentY = 0
     readonly property bool busy: attempt?.stateChanging ?? false
     readonly property bool hasWifi: Networking.devices.values.some(device => device.type === DeviceType.Wifi)
 
@@ -55,6 +57,7 @@ PanelMenu {
             message = "";
             showProfiles = false;
             showVpn = false;
+            showTailscale = false;
         }
     }
 
@@ -124,11 +127,17 @@ PanelMenu {
                     onBack: menu.showVpn = false
                     onExternalWindowRequested: menu.visible = false
                 }
+                TailscaleMenu {
+                    width: parent.width
+                    active: menu.visible && menu.showTailscale
+                    visible: menu.showTailscale
+                    onBack: menu.showTailscale = false
+                }
                 Column {
                     width: parent.width
                     spacing: 10
-                    visible: !menu.showProfiles && !menu.showVpn
-                Button {
+                     visible: !menu.showProfiles && !menu.showVpn && !menu.showTailscale
+                 Button {
                     width: parent.width
                     text: "VPN / WireGuard"
                     detail: "Saved profiles · connection status · IP / DNS"
@@ -136,18 +145,28 @@ PanelMenu {
                         menu.showVpn = true;
                         menu.passwordRequired = false;
                         password.clear();
-                    }
-                }
-                Button {
-                    width: parent.width
-                    text: "Connection profiles / IP settings"
-                    detail: "DHCP · static IP · DNS · routes · duplicate profiles"
-                    onTriggered: {
-                        menu.showProfiles = true;
-                        menu.passwordRequired = false;
-                        password.clear();
-                    }
-                }
+                 }
+                 Button {
+                     width: parent.width
+                     text: "Tailscale / Headscale"
+                     detail: "Mesh VPN · peers · connect to custom control server"
+                     onTriggered: {
+                         menu.showTailscale = true;
+                         menu.passwordRequired = false;
+                         password.clear();
+                     }
+                 }
+                 }
+                 Button {
+                     width: parent.width
+                     text: "Connection profiles / IP settings"
+                     detail: "DHCP · static IP · DNS · routes · duplicate profiles"
+                     onTriggered: {
+                         menu.showProfiles = true;
+                         menu.passwordRequired = false;
+                         password.clear();
+                     }
+                 }
                 Label {
                     width: parent.width
                     wrapMode: Text.WordWrap

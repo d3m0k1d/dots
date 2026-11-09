@@ -57,6 +57,16 @@ consistent sizing, placement and styling. Sound stays attached to the microphone
 or speaker icon used to open it, even when switching tabs. On narrow screens,
 the bar's left/right sections are clipped into horizontally draggable areas
 instead of overlapping workspaces. Workspace highlighting is per-monitor.
+
+The Network menu also contains a separate **Tailscale / Headscale** page. It
+reads `tailscale status --json`, shows the local state, tailnet, addresses and
+peer availability, and refreshes automatically. Connect, disconnect and logout
+always require confirmation. Headscale is supported through an HTTPS control
+server URL passed to `tailscale up --login-server`; an optional auth key is used
+only for that request. Control commands use non-interactive `sudo -n`, so the
+widget fails safely instead of opening a password prompt. Configure a suitable
+sudo/polkit policy or run the official Tailscale service if you want control
+from the panel.
 Bluetooth right-click toggles power; left-click opens a built-in dark popup with
 adapter selection, power, an automatic 60-second scan on opening, connect/disconnect, trust,
 confirmed forgetting and battery levels when reported. Scanning stops when the
