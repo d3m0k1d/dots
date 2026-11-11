@@ -120,16 +120,7 @@ alias cd="z"
 # Created by `pipx` on 2026-03-28 14:03:09
 export PATH="$PATH:/home/d3m0k1d/.local/bin"
 
-# The next line updates PATH for CLI.
-if [ -f '/home/d3m0k1d/yandex-cloud/path.bash.inc' ]; then source '/home/d3m0k1d/yandex-cloud/path.bash.inc'; fi
-
-# The next line enables shell command completion for yc.
-if [ -f '/home/d3m0k1d/yandex-cloud/completion.zsh.inc' ]; then source '/home/d3m0k1d/yandex-cloud/completion.zsh.inc'; fi
-
 eval "$(zoxide init zsh)"
-
-
-
 
 
 export PATH="$HOME/.npm-global/bin:$PATH"
@@ -137,8 +128,5 @@ export EDITOR="nvim"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/d3m0k1d/.lmstudio/bin"
 # End of LM Studio CLI section
-
-# OpenClaw Completion
-source "/home/d3m0k1d/.openclaw/completions/openclaw.zsh"
 
 export KUBECONFIG="$HOME/.kube/config"

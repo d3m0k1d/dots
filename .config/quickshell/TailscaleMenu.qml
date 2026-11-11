@@ -6,7 +6,7 @@ import Quickshell.Io
 Column {
     id: view
     property bool active: false
-    property var state: ({available: false, state: "unknown", peers: []})
+    property var state: ({available: false, state: "unknown", peers: [], acceptDns: true, acceptRoutes: false, advertiseRoutes: []})
     property string message: ""
     property string operation: ""
     property var pending: null
@@ -57,6 +57,13 @@ Column {
     }
     MenuLabel { width: parent.width; visible: !!view.state.hostname; text: (view.state.hostname || "") + (view.state.dnsName ? " · " + view.state.dnsName : ""); color: "#aaaaaa" }
     MenuLabel { width: parent.width; visible: !!view.state.tailnet; text: "Tailnet: " + view.state.tailnet; color: "#aaaaaa" }
+    MenuLabel {
+        width: parent.width
+        visible: view.state.available !== false
+        text: "DNS: " + (view.state.acceptDns ? "Tailscale" : "local")
+            + " · routes: " + (view.state.acceptRoutes ? "accepted" : "blocked")
+        color: "#aaaaaa"
+    }
     MenuLabel { width: parent.width; visible: view.message.length > 0; text: view.message; wrapMode: Text.Wrap; color: "#ff9999" }
 
     Column {
@@ -78,6 +85,34 @@ Column {
         visible: view.pending === null
         MenuButton { width: parent.width; text: "Connect to Tailscale"; enabled: !view.busy; onClicked: view.ask("up", "connect") }
         MenuButton { width: parent.width; text: "Connect to Headscale"; enabled: !view.busy; onClicked: view.ask("up", "connect to Headscale") }
+        MenuButton {
+            width: parent.width
+            text: view.state.acceptDns ? "Use local DNS" : "Use Tailscale DNS"
+            enabled: !view.busy && view.state.state === "Running"
+            detail: view.state.acceptDns ? "Disable Tailscale DNS and keep local resolver" : "Accept DNS settings from the tailnet"
+            onClicked: view.request("set", {acceptDns: !view.state.acceptDns})
+        }
+        MenuButton {
+            width: parent.width
+            text: view.state.acceptRoutes ? "Stop accepting Tailscale routes" : "Accept Tailscale routes"
+            enabled: !view.busy && view.state.state === "Running"
+            detail: "Apply subnet routes advertised by other nodes"
+            onClicked: view.request("set", {acceptRoutes: !view.state.acceptRoutes})
+        }
+        MenuLabel { text: "Advertise local routes"; font.bold: true }
+        Controls.TextField {
+            id: routeInput
+            width: parent.width
+            placeholderText: "192.168.1.0/24,10.0.0.0/8"
+            text: (view.state.advertiseRoutes || []).join(",")
+        }
+        MenuButton {
+            width: parent.width
+            text: "Apply advertised routes"
+            enabled: !view.busy
+            detail: "Empty value clears routes advertised by this machine"
+            onClicked: view.request("set", {advertiseRoutes: routeInput.text})
+        }
         MenuButton { width: parent.width; text: "Disconnect"; enabled: !view.busy && view.state.state === "Running"; onClicked: view.ask("down", "disconnect") }
         MenuButton { width: parent.width; text: "Log out"; enabled: !view.busy && view.state.state === "Running"; onClicked: view.ask("logout", "log out") }
     }

@@ -15,9 +15,20 @@ def run(*args):
 
 
 def privileged(*args):
+    try:
+        return run("tailscale", *args)
+    except RuntimeError:
+        pass
     if not shutil.which("sudo"):
         raise RuntimeError("sudo is required for Tailscale control")
     return run("sudo", "-n", "--", "tailscale", *args)
+
+
+def preferences():
+    try:
+        return json.loads(run("tailscale", "debug", "prefs"))
+    except (OSError, RuntimeError, ValueError, TypeError, json.JSONDecodeError, subprocess.TimeoutExpired):
+        return {}
 
 
 def snapshot():
@@ -26,9 +37,9 @@ def snapshot():
     try:
         raw = run("tailscale", "status", "--json")
         data = json.loads(raw)
-        self_node = data.get("Self", {})
+        self_node = data.get("Self") or {}
         peers = []
-        for node in data.get("Peer", {}).values():
+        for node in (data.get("Peer") or {}).values():
             ips = node.get("TailscaleIPs", [])
             peers.append({
                 "name": node.get("HostName") or node.get("DNSName") or node.get("ID", "peer"),
@@ -41,18 +52,37 @@ def snapshot():
             })
         peers.sort(key=lambda item: (not item["online"], item["name"].casefold()))
         backend = data.get("BackendState", "Unknown")
+        prefs = preferences()
+        advertised_routes = prefs.get("AdvertiseRoutes") or []
+        if isinstance(advertised_routes, str):
+            advertised_routes = [advertised_routes] if advertised_routes else []
         return {
             "available": True, "state": backend, "hostname": self_node.get("HostName", ""),
             "dnsName": self_node.get("DNSName", "").rstrip("."),
             "ips": self_node.get("TailscaleIPs", []), "peers": peers,
-            "tailnet": data.get("CurrentTailnet", {}).get("Name", ""),
+            "tailnet": (data.get("CurrentTailnet") or {}).get("Name", ""),
             "loginUrl": data.get("AuthURL", ""),
+            "acceptDns": bool(prefs.get("CorpDNS", True)),
+            "acceptRoutes": bool(prefs.get("RouteAll", False)),
+            "advertiseRoutes": advertised_routes,
         }
     except (OSError, RuntimeError, ValueError, TypeError, json.JSONDecodeError, subprocess.TimeoutExpired) as error:
         return {"available": True, "state": "error", "peers": [], "error": str(error)}
 
 
 def action(name, payload):
+    if name == "set":
+        args = []
+        if "acceptDns" in payload:
+            args += ["--accept-dns=" + ("true" if bool(payload["acceptDns"]) else "false")]
+        if "acceptRoutes" in payload:
+            args += ["--accept-routes=" + ("true" if bool(payload["acceptRoutes"]) else "false")]
+        if "advertiseRoutes" in payload:
+            routes = str(payload["advertiseRoutes"]).strip()
+            args += ["--advertise-routes", routes]
+        if not args:
+            raise ValueError("No Tailscale setting was provided")
+        return {"message": "Tailscale settings updated", "output": privileged("set", *args)}
     if name == "up":
         server = str(payload.get("server", "")).strip()
         if server and not (server.startswith("https://") or server.startswith("http://")):
